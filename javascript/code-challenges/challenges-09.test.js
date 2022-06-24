@@ -66,7 +66,6 @@ const updateNumbers = (obj) => {
   let keys = Object.keys(obj);
   let newData = keys.map(item => item + ': ' + obj[item]);
   return newData;
-  // Solution code here...
 };
 
 
