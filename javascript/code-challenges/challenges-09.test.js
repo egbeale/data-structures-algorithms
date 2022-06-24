@@ -27,7 +27,7 @@ const courseInfo = { name: 'Code 301', duration: { dayTrack: '4 weeks', eveningT
 
 const getCourseKeys = (obj) => {
   // Solution code here...
-  // return Object.keys;
+  return Object.keys(obj);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -39,6 +39,7 @@ Write a function named checkValues that takes in an object and a value and retur
 ------------------------------------------------------------------------------------------------ */
 
 const checkValues = (obj, value) => {
+  return Object.values(obj).includes(value) ? true : false;
   // Solution code here...
 };
 
@@ -62,6 +63,9 @@ HR has asked you to change the data to make it easier to print so that it looks 
 ------------------------------------------------------------------------------------------------ */
 
 const updateNumbers = (obj) => {
+  let keys = Object.keys(obj);
+  let newData = keys.map(item => item + ': ' + obj[item]);
+  return newData;
   // Solution code here...
 };
 
@@ -119,6 +123,7 @@ const characters = [
 const getHouses = (arr) => {
   let houses = [];
   // Solution code here...
+  Object.values(arr).forEach(items => houses.push(items.house));
   return houses;
 };
 
@@ -135,6 +140,17 @@ hasChildrenValues(characters, 'Sansa') will return false
 ------------------------------------------------------------------------------------------------ */
 
 const hasChildrenValues = (arr, character) => {
+  let kiddos = 0;
+  arr.forEach(person => {
+    if (person.name === character) {
+      Object.keys(person).forEach((key, idx) => {
+        if (key === 'children') {
+          kiddos = Object.values(person)[idx].length;
+        }
+      });
+    }
+  });
+  return kiddos ? true : false;
   // Solution code here...
 
 };
