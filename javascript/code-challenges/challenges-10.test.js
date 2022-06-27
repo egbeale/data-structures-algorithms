@@ -56,7 +56,14 @@ return: 35
 ------------------------------------------------------------------------------------------------ */
 const totalSum = (matrix) => {
   // Solution code here...
-  // let sum = 0;
+  let totalSum = 0;
+
+  matrix.forEach(nestedArr => { // slow loop
+    nestedArr.forEach(number => { // fast loop
+      totalSum += number;
+    });
+  });
+  return totalSum;
 
 };
 
@@ -85,7 +92,16 @@ const cookieStores = [firstPike, seaTac, seattleCenter, capHill, alkiBeach];
 
 const grandTotal = (stores) => {
   // Solution code here...
+  let hourlyTotals = [];
 
+  for(let i = 0; i < stores[0].length; i++) {
+    let hourlySum  = 0;
+    for(let j = 0; j < stores.length; j++) {
+      hourlySum += stores [j][i];
+    }
+    hourlyTotals.push(hourlySum);
+  }
+  return hourlyTotals;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -130,6 +146,7 @@ const errands = [
 
 const howManyTreats = (arr) => {
   // Solution code here...
+  return arr[2].items[1].quantity;
 };
 
 /* ------------------------------------------------------------------------------------------------
