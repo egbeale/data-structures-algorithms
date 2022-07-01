@@ -1,5 +1,7 @@
 'use strict';
 
+const { next } = require("cheerio/lib/api/traversing");
+
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 1 - Review
 
@@ -18,8 +20,13 @@ Becomes:
 ]
 ------------------------------------------------------------------------------------------------ */
 
-function transformToLis(obj){
+function transformToLis(obj) {
   // Solution code here...
+  let results = [];
+  for (let items in obj) {
+    results.push(`<li>${items}: ${obj[items]}</li>`);
+  }
+  return results;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -36,7 +43,7 @@ const count = (target, input) => {
   // Solution code here...
   let counter = 0;
   input.map(arr => {
-    arr.forEach(num => num === target?counter++:counter);
+    arr.forEach(num => num === target ? counter++ : counter);
   });
   return counter;
 };
@@ -72,7 +79,9 @@ For example, [ [0,2,5,4], [2,4,10], [] ] should return [ [1, 32], [1024], [] ].
 
 const divisibleByFiveTwoToThePower = (input) => {
   // Solution code here...
-  })
+  return input.map(nestedArr => {
+    return nestedArr.filter(element => typeof element === 'number' && element % 5 === 0).map(filterElem => Math.pow(2, filterElem));
+  });
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -139,6 +148,10 @@ let starWarsData = [{
 
 let findMaleAndFemale = (data) => {
   // Solution code here...
+  let gendered = data.map((character) =>
+    (character.gender === 'male' || character.gender === 'female') && character.name)
+    .filter(names => 'string' === typeof (names)).join(' and ');
+  return gendered;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -149,6 +162,7 @@ Write a function named findShortest that, given the Star Wars data from Challeng
 
 let findShortest = (data) => {
   // Solution code here...
+  return data.reduce((shortest, nextCharacter) => +shortest.height < +nextCharacter.height ? shortest : nextCharacter).name;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -164,8 +178,8 @@ Run your tests from the console: jest challenges-10.test.js
 
 describe('Testing challenge 1', () => {
   test('It should return a list of key value pairs inside of li tags', () => {
-    expect(transformToLis({name: 'bob', age: 32})[0]).toStrictEqual(`<li>name: bob</li>`);
-    expect(transformToLis({name: 'bob', age: 32})[1]).toStrictEqual(`<li>age: 32</li>`);
+    expect(transformToLis({ name: 'bob', age: 32 })[0]).toStrictEqual(`<li>name: bob</li>`);
+    expect(transformToLis({ name: 'bob', age: 32 })[1]).toStrictEqual(`<li>age: 32</li>`);
     expect(transformToLis({})).toStrictEqual([]);
   });
 });
