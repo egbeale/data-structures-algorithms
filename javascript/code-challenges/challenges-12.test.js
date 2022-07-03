@@ -49,7 +49,7 @@ If it does, return true. If not, return false.
 
 const hasNumber = (string) => {
   // Solution code here...
-  let regex=/([a-zA-z]\d)/;
+  let regex = /([a-zA-z]\d)/;
   return regex.test(string);
 };
 
@@ -98,7 +98,8 @@ Return either true or false.
 
 const validatePhoneNumber = (phoneNumber) => {
   // Solution code here...
-  let reg = 
+  let reg = /^(\(\d{3}\)|\d{3})[- ]?\d{3}[- ]?\d{4}$/;
+  return reg.test(phoneNumber);
 };
 
 /* ------------------------------------------------------------------------------------------------
