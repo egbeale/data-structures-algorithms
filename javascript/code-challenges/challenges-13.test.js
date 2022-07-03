@@ -8,6 +8,14 @@ Write a function named longestString that takes in an array of strings and retur
 
 const longestString = (arr) => {
 // Solution code here...
+  let longstr;
+  if (arr.length > 0) {
+    longstr = arr.reduce((a, b) => {
+      b.length > a.length ? a = b : a = a;
+      return a;
+    });
+  }
+  return arr.indexOf(longstr);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -48,6 +56,13 @@ For example, (123) 456-7890 returns 1234567890
 
 const standardizePhoneNumbers = (arr) => {
   // Solution code here...
+  return arr.map(num => {
+    let firstBit = num.substring(1,4);
+    let midBit = num.substring(6,9);
+    let lastBit = num.substring(10);
+    return firstBit + midBit + lastBit;
+  })
+
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -60,6 +75,11 @@ For example, 'abcdefg' returns 'bdf'
 
 const onlyOddChars = (str) => {
   // Solution code here...
+  let oddies = '';
+  for (let i = 0; i < str.length; i++) {
+    i % 2 !== 0 ? oddies+=str[i] : '';
+  }
+  return oddies;
 };
 
 /* ------------------------------------------------------------------------------------------------
